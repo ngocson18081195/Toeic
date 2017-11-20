@@ -20,4 +20,5 @@ public class QuestionPartOneImplement extends CRUDServiceImpl<QuestionPartOneEnt
         super(questionPartOneRepository);
     }
 
+
 }

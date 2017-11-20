@@ -28,4 +28,8 @@ public abstract class CRUDServiceImpl<E extends IdModel,
         return repository.save(e);
     }
 
+    @Override
+    public void delete(ID id) {
+
+    }
 }

@@ -13,4 +13,5 @@ public interface CRUDService<E extends IdModel, ID extends Serializable> extends
 
     E save(E e);
 
+    void delete(ID id);
 }
