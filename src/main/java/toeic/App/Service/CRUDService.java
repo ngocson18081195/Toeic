@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by chien on 17/11/2017.
  */
-public interface CRUDService<E extends IdModel, ID extends Serializable>{
+public interface CRUDService<E, ID extends Serializable>{
 
     E findOne(ID id);
 

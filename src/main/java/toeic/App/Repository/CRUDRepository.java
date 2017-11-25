@@ -18,4 +18,6 @@ public interface CRUDRepository<E extends IdModel, ID extends Serializable> {
     void delete(ID id);
 
     List<E> findAll();
+
+    E update(E e);
 }

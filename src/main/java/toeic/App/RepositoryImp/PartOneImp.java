@@ -17,7 +17,11 @@ public class PartOneImp extends CRUDRepositoryImp<QuestionPartOneEntity,Long> im
 
     private final static Logger logger = LoggerFactory.getLogger(PartOneImp.class);
 
-
+    /**
+     *  Method Create PartOne Entity
+     * @param questionPartOneEntity
+     * @return PartOneEntity
+     */
     @Override
     public QuestionPartOneEntity create(QuestionPartOneEntity questionPartOneEntity) {
         logger.info("Create Part One Dao");
@@ -35,4 +39,23 @@ public class PartOneImp extends CRUDRepositoryImp<QuestionPartOneEntity,Long> im
 
         return null;
     }
+
+    @Override
+    public void delete(QuestionPartOneEntity questionPartOneEntity) {
+
+    }
+
+    /**
+     *
+     * Method Find One PartOne Entity
+     *
+     * @param id
+     * @return PartOneEntity
+     */
+    @Override
+    public QuestionPartOneEntity findByOne(Long id) {
+        return this.findOne(id);
+    }
+
+
 }

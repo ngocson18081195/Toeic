@@ -26,5 +26,6 @@ public class QuestionPartOneEntity extends ListeningModel {
     private String scriptThree;
     @Column(name = "D")
     private String scriptFour;
-
+    @Column(name = "flag")
+    private boolean flag;
 }

@@ -27,25 +27,47 @@ public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> imple
         this.entityclass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
     }
 
+    /**
+     * Method find one Entity
+     *
+     * @param id
+     * @return EntityManager
+     */
     @Override
     public E findOne(ID id) {
-        return null;
+        E e = entityManager.find(entityclass,id);
+        return e;
     }
 
+    /**
+     * Method Save Entity into Database
+     * @param e
+     * @return EntityManager
+     */
     @Override
     public E save(E e) {
         entityManager.persist(e);
         return e;
     }
 
+    /**
+     * Method delete Entity from database
+     *
+     * @param id
+     */
     @Override
     public void delete(ID id) {
-
+        entityManager.remove(id);
     }
 
     @Override
     public List<E> findAll() {
         List<E> list = entityManager.createQuery("from "+entityclass.getName()).getResultList();
         return list;
+    }
+
+    @Override
+    public E update(E e) {
+        return null;
     }
 }

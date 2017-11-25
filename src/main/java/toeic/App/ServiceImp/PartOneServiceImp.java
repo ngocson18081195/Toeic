@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import toeic.App.DTO.PartOneDto;
 import toeic.App.Entity.QuestionPartOneEntity;
 import toeic.App.Repository.QuestionPartOneDao;
 import toeic.App.Service.QuestionPartOneService;
+import toeic.App.transform.PartOneTF;
 
 import java.util.List;
 
@@ -22,16 +24,31 @@ public class PartOneServiceImp implements QuestionPartOneService {
 
     @Autowired
     private QuestionPartOneDao questionPartOneDao;
+    @Autowired
+    private PartOneTF partOneTF;
+
 
     @Override
-    public QuestionPartOneEntity findOne(Long aLong) {
-        return null;
+    public PartOneDto findOne(Long Id) {
+        QuestionPartOneEntity questionPartOneEntity  = questionPartOneDao.findByOne(Id);
+        PartOneDto partOneDto = partOneTF.convertPartOneEntitytoDTO(questionPartOneEntity);
+        return partOneDto;
     }
 
     @Override
-    public QuestionPartOneEntity save(QuestionPartOneEntity questionPartOneEntity) {
-        logger.info("Create Part One Service");
-        return questionPartOneDao.create(questionPartOneEntity);
+    public PartOneDto save(PartOneDto partOneDto) {
+        logger.info("Start Process Save DTO Service");
+        try {
+            if (partOneDto != null){
+                QuestionPartOneEntity questionPartOneEntity = partOneTF.convertPartOneDtotoEntity(partOneDto);
+                questionPartOneDao.create(questionPartOneEntity);
+            }
+        }catch (Exception e){
+            logger.error("Convert Entity Error",e);
+        }
+
+        logger.info("Finish Process Save DTO Service");
+        return partOneDto;
     }
 
     @Override
@@ -40,8 +57,7 @@ public class PartOneServiceImp implements QuestionPartOneService {
     }
 
     @Override
-    public List<QuestionPartOneEntity> list() {
-        logger.info("Find All Part One Service");
-        return questionPartOneDao.LIST();
+    public List<PartOneDto> list() {
+        return null;
     }
 }

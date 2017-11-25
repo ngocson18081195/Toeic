@@ -10,8 +10,15 @@ import java.util.List;
  * Created by chien on 17/11/2017.
  */
 @Repository
-public interface QuestionPartOneDao  {
+public interface QuestionPartOneDao {
+
     QuestionPartOneEntity create(QuestionPartOneEntity questionPartOneEntity);
+
     List<QuestionPartOneEntity> LIST();
+
     QuestionPartOneEntity findByName(String name);
+
+    void delete(QuestionPartOneEntity questionPartOneEntity);
+
+    QuestionPartOneEntity findByOne(Long id);
 }
