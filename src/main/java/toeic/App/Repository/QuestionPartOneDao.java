@@ -18,7 +18,7 @@ public interface QuestionPartOneDao {
 
     QuestionPartOneEntity findByName(String name);
 
-    void delete(QuestionPartOneEntity questionPartOneEntity);
+    void remove(QuestionPartOneEntity questionPartOneEntity);
 
     QuestionPartOneEntity findByOne(Long id);
 }

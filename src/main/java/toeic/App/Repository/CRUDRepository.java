@@ -10,12 +10,12 @@ import java.util.List;
  * Created by ngocson on 24/11/2017.
  */
 @Repository
-public interface CRUDRepository<E extends IdModel, ID extends Serializable> {
+public interface CRUDRepository<E, ID extends Serializable> {
     E findOne(ID id);
 
     E save(E e);
 
-    void delete(ID id);
+    void delete(E e);
 
     List<E> findAll();
 

@@ -9,5 +9,5 @@ import toeic.App.Entity.QuestionPartOneEntity;
  */
 
 public interface QuestionPartOneService extends CRUDService<PartOneDto, Long> {
-
+    boolean checkUpdatedDate(PartOneDto partOneDto);
 }

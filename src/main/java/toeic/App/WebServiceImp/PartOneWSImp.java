@@ -3,6 +3,7 @@ package toeic.App.WebServiceImp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,8 +44,22 @@ public class PartOneWSImp implements PartOneWS{
 
     @Override
     public ResponseEntity findOne(@PathVariable(name = "id") Long id) {
-        System.out.println(id);
-        PartOneDto partOneDto = questionPartOneService.findOne(id);
+        logger.info("Start Find One",id);
+        PartOneDto partOneDto = null;
+        if (id !=null) {
+            partOneDto = questionPartOneService.findOne(id);
+        }
         return ResponseEntity.ok(partOneDto);
+    }
+
+    @Override
+    public ResponseEntity delete(@PathVariable(name = "id") Long id) {
+        logger.info("Start delete",id);
+        PartOneDto partOneDto = questionPartOneService.findOne(id);
+        if (partOneDto !=null){
+            questionPartOneService.delete(partOneDto);
+        }
+        logger.info("Finish Delete");
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

@@ -14,7 +14,7 @@ public interface CRUDService<E, ID extends Serializable>{
 
     E save(E e);
 
-    void delete(ID id);
+    void delete(E e);
 
     List<E> list();
 }

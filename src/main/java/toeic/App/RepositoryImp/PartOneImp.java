@@ -28,9 +28,13 @@ public class PartOneImp extends CRUDRepositoryImp<QuestionPartOneEntity,Long> im
         return this.save(questionPartOneEntity);
     }
 
+    /**
+     *  Method List Entity
+     * @return List Entity Part One
+     */
     @Override
     public List<QuestionPartOneEntity> LIST() {
-        logger.info("Find All Dao");
+        logger.info("Find All Part One Dao");
         return this.findAll();
     }
 
@@ -40,9 +44,16 @@ public class PartOneImp extends CRUDRepositoryImp<QuestionPartOneEntity,Long> im
         return null;
     }
 
+    /**
+     * Method Delete One Entity based id
+     *
+     * @param questionPartOneEntity
+     */
     @Override
-    public void delete(QuestionPartOneEntity questionPartOneEntity) {
-
+    public void remove(QuestionPartOneEntity questionPartOneEntity) {
+        logger.info("Start Process Remove Entity DAO");
+        this.delete(questionPartOneEntity);
+        logger.info("Finish Process Remove Entity DAO");
     }
 
     /**
@@ -54,6 +65,7 @@ public class PartOneImp extends CRUDRepositoryImp<QuestionPartOneEntity,Long> im
      */
     @Override
     public QuestionPartOneEntity findByOne(Long id) {
+        logger.info("Start Process Find One Entity");
         return this.findOne(id);
     }
 

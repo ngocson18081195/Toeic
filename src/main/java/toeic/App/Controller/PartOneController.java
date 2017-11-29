@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * Created by chien on 19/11/2017.
  */
 @Controller
-public class QuestionPartOneController {
+public class PartOneController {
 
     @GetMapping("/index")
     public String index() {

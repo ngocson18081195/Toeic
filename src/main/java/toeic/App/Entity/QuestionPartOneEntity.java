@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.util.Date;
 
 /**
  * Created by chien on 17/11/2017.
@@ -28,4 +29,6 @@ public class QuestionPartOneEntity extends ListeningModel {
     private String scriptFour;
     @Column(name = "flag")
     private boolean flag;
+    @Column(name = "updateDate")
+    private Date updatedDate;
 }
