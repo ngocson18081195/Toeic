@@ -14,11 +14,10 @@ import java.util.List;
 @Repository
 public class PartOneImp extends CRUDRepositoryImp<QuestionPartOneEntity,Long> implements QuestionPartOneDao {
 
-
     private final static Logger logger = LoggerFactory.getLogger(PartOneImp.class);
 
     /**
-     *  Method Create PartOne Entity
+     * Method Create PartOne Entity
      * @param questionPartOneEntity
      * @return PartOneEntity
      */

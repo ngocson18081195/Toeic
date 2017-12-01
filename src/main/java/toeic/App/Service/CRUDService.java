@@ -1,14 +1,12 @@
 package toeic.App.Service;
 
-import toeic.Common.Model.IdModel;
-
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by chien on 17/11/2017.
  */
-public interface CRUDService<E, ID extends Serializable>{
+public interface CRUDService<E, ID extends Serializable> {
 
     E findOne(ID id);
 
@@ -17,4 +15,5 @@ public interface CRUDService<E, ID extends Serializable>{
     void delete(ID id);
 
     List<E> list();
+
 }

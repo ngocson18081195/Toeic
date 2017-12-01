@@ -12,19 +12,18 @@ import java.util.List;
 /**
  * Created by ngocson on 24/11/2017.
  */
-public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> implements CRUDRepository<E,ID> {
+public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> implements CRUDRepository<E, ID> {
     /**
-     *  create Entity manager
-     *
+     * create Entity manager
      */
     @PersistenceContext
     protected EntityManager entityManager;
 
-    protected Class<E> entityclass;
+    protected Class<E> entityClass;
 
     public CRUDRepositoryImp() {
         ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-        this.entityclass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
+        this.entityClass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
     }
 
     /**
@@ -35,12 +34,13 @@ public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> imple
      */
     @Override
     public E findOne(ID id) {
-        E e = entityManager.find(entityclass,id);
+        E e = entityManager.find(entityClass, id);
         return e;
     }
 
     /**
      * Method Save Entity into Database
+     *
      * @param e
      * @return EntityManager
      */
@@ -62,7 +62,7 @@ public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> imple
 
     @Override
     public List<E> findAll() {
-        List<E> list = entityManager.createQuery("from "+entityclass.getName()).getResultList();
+        List<E> list = entityManager.createQuery("from " + entityClass.getName()).getResultList();
         return list;
     }
 

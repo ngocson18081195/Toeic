@@ -9,7 +9,7 @@ import toeic.App.DTO.PartOneDto;
 import toeic.App.Entity.QuestionPartOneEntity;
 import toeic.App.Repository.QuestionPartOneDao;
 import toeic.App.Service.QuestionPartOneService;
-import toeic.App.transform.PartOneTF;
+import toeic.App.Transform.PartOneTF;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class PartOneServiceImp implements QuestionPartOneService {
 
     @Override
     public PartOneDto findOne(Long Id) {
-        QuestionPartOneEntity questionPartOneEntity  = questionPartOneDao.findByOne(Id);
+        QuestionPartOneEntity questionPartOneEntity = questionPartOneDao.findByOne(Id);
         PartOneDto partOneDto = partOneTF.convertPartOneEntitytoDTO(questionPartOneEntity);
         return partOneDto;
     }
@@ -39,12 +39,12 @@ public class PartOneServiceImp implements QuestionPartOneService {
     public PartOneDto save(PartOneDto partOneDto) {
         logger.info("Start Process Save DTO Service");
         try {
-            if (partOneDto != null){
+            if (partOneDto != null) {
                 QuestionPartOneEntity questionPartOneEntity = partOneTF.convertPartOneDtotoEntity(partOneDto);
                 questionPartOneDao.create(questionPartOneEntity);
             }
-        }catch (Exception e){
-            logger.error("Convert Entity Error",e);
+        } catch (Exception e) {
+            logger.error("Convert Entity Error", e);
         }
 
         logger.info("Finish Process Save DTO Service");

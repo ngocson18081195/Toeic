@@ -11,6 +11,7 @@ public class ToeicApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

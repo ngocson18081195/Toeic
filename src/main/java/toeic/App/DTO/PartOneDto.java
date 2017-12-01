@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PartOneDto implements Serializable{
-    private Long   id;
+    private Long id;
     private String pathImage;
     private String pathMp3;
     private String scriptOne;
