@@ -12,18 +12,22 @@ import java.util.List;
 /**
  * Created by ngocson on 24/11/2017.
  */
-public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> implements CRUDRepository<E, ID> {
+public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDRepository<E,ID> {
     /**
-     * create Entity manager
+     *  create Entity manager
+     *
      */
     @PersistenceContext
     protected EntityManager entityManager;
 
-    protected Class<E> entityClass;
+    protected Class<E> entityclass;
 
+    /**
+     *
+     */
     public CRUDRepositoryImp() {
         ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-        this.entityClass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
+        this.entityclass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
     }
 
     /**
@@ -34,13 +38,12 @@ public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> imple
      */
     @Override
     public E findOne(ID id) {
-        E e = entityManager.find(entityClass, id);
+        E e = entityManager.find(entityclass,id);
         return e;
     }
 
     /**
      * Method Save Entity into Database
-     *
      * @param e
      * @return EntityManager
      */
@@ -53,21 +56,33 @@ public class CRUDRepositoryImp<E extends IdModel, ID extends Serializable> imple
     /**
      * Method delete Entity from database
      *
-     * @param id
+     * @param e
      */
     @Override
-    public void delete(ID id) {
-        entityManager.remove(id);
+    public void delete(E e) {
+        System.out.println("@@@@@@"+e);
+        entityManager.remove(e);
     }
 
+    /**
+     *  Method list entity
+     *
+     * @return List Entity
+     */
     @Override
     public List<E> findAll() {
-        List<E> list = entityManager.createQuery("from " + entityClass.getName()).getResultList();
+        List<E> list = entityManager.createQuery("from "+entityclass.getName()).getResultList();
         return list;
     }
 
+    /**
+     * Method Update entity
+     * @param e
+     * @return Entity
+     */
     @Override
     public E update(E e) {
-        return null;
+
+        return entityManager.merge(e);
     }
 }

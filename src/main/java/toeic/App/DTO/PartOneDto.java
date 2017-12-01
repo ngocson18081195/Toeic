@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by ngocson on 25/11/2017.
@@ -22,4 +23,5 @@ public class PartOneDto implements Serializable{
     private String scriptTwo;
     private String scriptThree;
     private String scriptFour;
+    private Date   updatedDate;
 }

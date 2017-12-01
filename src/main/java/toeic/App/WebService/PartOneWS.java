@@ -17,4 +17,7 @@ public interface PartOneWS {
 
     @RequestMapping(value = "/find/{id}")
     ResponseEntity findOne(@PathVariable(name = "id") Long id);
+
+    @RequestMapping(value = "/delete/{id}")
+    ResponseEntity delete(@PathVariable(name = "id")Long id);
 }
