@@ -1,7 +1,7 @@
 package toeic.App.RepositoryImp;
 
+import org.springframework.transaction.annotation.Transactional;
 import toeic.App.Repository.CRUDRepository;
-import toeic.Common.Model.IdModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,14 +20,14 @@ public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDReposi
     @PersistenceContext
     protected EntityManager entityManager;
 
-    protected Class<E> entityclass;
+    protected Class<E> entityClass;
 
     /**
      *
      */
     public CRUDRepositoryImp() {
         ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-        this.entityclass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
+        this.entityClass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
     }
 
     /**
@@ -38,7 +38,7 @@ public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDReposi
      */
     @Override
     public E findOne(ID id) {
-        E e = entityManager.find(entityclass,id);
+        E e = entityManager.find(entityClass,id);
         return e;
     }
 
@@ -47,6 +47,7 @@ public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDReposi
      * @param e
      * @return EntityManager
      */
+    @Transactional
     @Override
     public E save(E e) {
         entityManager.persist(e);
@@ -71,7 +72,7 @@ public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDReposi
      */
     @Override
     public List<E> findAll() {
-        List<E> list = entityManager.createQuery("from "+entityclass.getName()).getResultList();
+        List<E> list = entityManager.createQuery("from "+ entityClass.getName()).getResultList();
         return list;
     }
 

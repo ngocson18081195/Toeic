@@ -8,7 +8,7 @@ import toeic.App.Entity.CandidateEntity;
 import toeic.App.Repository.AddressDao;
 import toeic.App.Repository.CandidateDao;
 import toeic.App.Service.CandidateService;
-import toeic.App.transform.PartOneTF;
+import toeic.App.Transform.PartOneTF;
 
 import java.util.List;
 

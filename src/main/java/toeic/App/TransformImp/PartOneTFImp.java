@@ -1,4 +1,4 @@
-package toeic.App.transformImp;
+package toeic.App.TransformImp;
 
 import org.springframework.stereotype.Service;
 import toeic.App.DTO.CandidateDTO;
@@ -8,11 +8,10 @@ import toeic.App.Entity.AddressEntity;
 import toeic.App.Entity.CandidateEntity;
 import toeic.App.Entity.QuestionPartOneEntity;
 import toeic.App.Entity.StateEntity;
-import toeic.App.transform.PartOneTF;
+import toeic.App.Transform.PartOneTF;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Created by ngocson on 25/11/2017.
@@ -64,7 +63,7 @@ public class PartOneTFImp implements PartOneTF {
         StateEntity stateEntity = new StateEntity();
         stateEntity.setId(stateDTO.getId());
         stateEntity.setName(stateDTO.getName());
-        stateEntity.setCoutryEntity(stateDTO.getCoutryEntity());
+        stateEntity.setCountryEntity(stateDTO.getCountryEntity());
         return stateEntity;
     }
     @Override
@@ -99,7 +98,7 @@ public class PartOneTFImp implements PartOneTF {
         StateDTO stateDTO = new StateDTO();
         stateDTO.setId(stateEntity.getId());
         stateDTO.setName(stateEntity.getName());
-        stateDTO.setCoutryEntity(stateEntity.getCoutryEntity());
+        stateDTO.setCountryEntity(stateEntity.getCountryEntity());
         return stateDTO;
     }
 }

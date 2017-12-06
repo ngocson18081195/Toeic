@@ -6,14 +6,14 @@ import java.util.List;
 /**
  * Created by chien on 17/11/2017.
  */
-public interface CRUDService<E, ID extends Serializable> {
+public interface CRUDService<D, ID extends Serializable> {
 
-    E findOne(ID id);
+    D findOne(ID id);
 
-    E save(E e);
+    D save(D d);
 
-    void delete(E e);
+    void delete(D d);
 
-    List<E> list();
+    List<D> list();
 
 }

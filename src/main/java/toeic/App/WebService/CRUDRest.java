@@ -10,18 +10,18 @@ import java.util.List;
 /**
  * Created by chien on 29/11/2017.
  */
-public interface CRUDRest<E, ID extends Serializable> {
+public interface CRUDRest<D, ID extends Serializable> {
     @GetMapping()
-    ResponseEntity<List<E>> findAll();
+    ResponseEntity<List<D>> findAll();
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<E> findOne(@PathVariable(name = "id") ID id);
+    ResponseEntity<D> findOne(@PathVariable(name = "id") ID id);
 
     @PostMapping()
-    ResponseEntity<E> create();
+    ResponseEntity<D> create(D d);
 
     @PatchMapping(value = "/{id}")
-    ResponseEntity<E> update(@PathVariable(name = "id") ID id);
+    ResponseEntity<D> update(@PathVariable(name = "id") ID id);
 
     @DeleteMapping(value = "/{id}")
     HttpStatus remove(@PathVariable(name = "id") ID id);

@@ -1,6 +1,5 @@
 package toeic.App.DTO;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -17,6 +16,7 @@ import java.io.Serializable;
 public class QuestionPartTwoDto implements Serializable {
 
     private MultipartFile fileMp3;
+    private Character answer;
     private byte[] bytes;
     private String question;
     private String scriptOne;

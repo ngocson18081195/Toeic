@@ -1,17 +1,18 @@
 package toeic.App.Utils;
 
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * Created by chien on 29/11/2017.
  */
 @Component
+@Getter
 public class ServiceFiles {
 
     private String homeUser;
@@ -21,9 +22,9 @@ public class ServiceFiles {
     public void init() throws Exception {
         this.homeUser = System.getProperty("user.home");
         String osName = System.getProperty("os.name");
-        if (osName.equals("Linux")) {
+        if (osName.toUpperCase().equals(OS.LINUX.toString())) {
             this.separate = '/';
-        } else if (osName.equals("Window")) {
+        } else if (osName.toLowerCase().equals(OS.WINDOW.toString())) {
             this.separate = '\\';
         } else {
             throw new Exception("Os Now Allow");
