@@ -87,6 +87,21 @@ public class PartOneServiceImp implements QuestionPartOneService {
     }
 
     @Override
+    public PartOneDto update(PartOneDto partOneDto, Long aLong) {
+        return null;
+    }
+
+    @Override
+    public List<PartOneDto> findAll() {
+        return null;
+    }
+
+    @Override
+    public void delete(Long aLong) {
+
+    }
+
+//    @Override
     public List<PartOneDto> list() {
         List<QuestionPartOneEntity> list = questionPartOneDao.LIST();
         List<PartOneDto> dtoList = partOneTF.convertListEtntiytoDTO(list);

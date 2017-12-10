@@ -1,29 +1,30 @@
 package toeic.App.WebService;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by chien on 29/11/2017.
  */
-public interface CRUDRest<E, ID extends Serializable> {
-    @GetMapping( value = "/all")
-    ResponseEntity<List<E>> findAll() throws IOException;
+public interface CRUDRest<D, ID extends Serializable> {
+    @GetMapping()
+    ResponseEntity<List<D>> findAll();
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<E> findOne(@PathVariable(name = "id") ID id) throws IOException;
+    ResponseEntity<D> findOne(@PathVariable(name = "id") ID id);
 
-    @PostMapping(value = "/save" )
-    ResponseEntity<E> create(@RequestBody E e) throws IOException;
+    @PostMapping()
+    ResponseEntity<D> create(D d);
 
     @PutMapping(value = "/{id}")
-    ResponseEntity<E> update(@RequestBody E e,@PathVariable(name = "id") ID id) throws IOException;
+    ResponseEntity<D> update(D d, @PathVariable(name = "id") ID id);
 
     @DeleteMapping(value = "/{id}")
-    HttpStatus remove(@PathVariable(name = "id") ID id) throws IOException;
+    HttpStatus remove(@PathVariable(name = "id") ID id);
 }

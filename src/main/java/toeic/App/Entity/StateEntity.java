@@ -16,5 +16,5 @@ public class StateEntity {
     private String name;
     @ManyToOne
     @JoinColumn(name = "Coutry_ID")
-    private CoutryEntity coutryEntity;
+    private CountryEntity countryEntity;
 }

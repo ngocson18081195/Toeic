@@ -23,7 +23,7 @@ public class ServiceFiles {
         String osName = System.getProperty("os.name");
         if (osName.equals("Linux")) {
             this.separate = '/';
-        } else if (osName.contains("Windows")) {
+        } else if (osName.equals("Window")) {
             this.separate = '\\';
         } else {
             throw new Exception("Os Now Allow");

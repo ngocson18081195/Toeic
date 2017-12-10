@@ -1,20 +1,24 @@
 package toeic.App.Service;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by chien on 17/11/2017.
  */
-public interface CRUDService<E, ID extends Serializable> {
+public interface CRUDService<D, ID extends Serializable> {
 
-    E findOne(ID id) throws IOException;
+    List<D> list();
 
-    E save(E e) throws IOException;
+    D findOne(ID id);
 
-    void delete(E e) throws IOException;
+    D save(D d);
 
-    List<E> list() throws IOException;
+    void delete(D d);
 
+    D update(D d, ID id);
+
+    List<D> findAll();
+
+    void delete(ID id);
 }
