@@ -7,7 +7,7 @@ import toeic.App.DTO.StateDTO;
 import toeic.App.Entity.StateEntity;
 import toeic.App.Repository.StateDao;
 import toeic.App.Service.StateService;
-import toeic.App.transform.PartOneTF;
+import toeic.App.Transform.PartOneTF;
 
 /**
  * Created by ngocson on 29/11/2017.

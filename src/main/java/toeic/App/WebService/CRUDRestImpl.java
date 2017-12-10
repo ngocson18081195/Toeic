@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,12 +29,12 @@ public abstract class CRUDRestImpl<E, ID extends Serializable> implements CRUDRe
     }
 
     @Override
-    public ResponseEntity<E> create() {
+    public ResponseEntity<E> create(@RequestBody E e) {
         return null;
     }
 
     @Override
-    public ResponseEntity<E> update(@PathVariable(name = "id") ID id) {
+    public ResponseEntity<E> update(@RequestBody E e,@PathVariable(name = "id") ID id) {
         return null;
     }
 

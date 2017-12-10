@@ -1,5 +1,7 @@
 package toeic.Common.Model;
 
+import lombok.ToString;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * Created by chien on 17/11/2017.
  */
 @MappedSuperclass
+@ToString
 public class IdModel implements Serializable {
 
     @Id

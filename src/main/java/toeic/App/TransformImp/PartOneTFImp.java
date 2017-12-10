@@ -8,11 +8,10 @@ import toeic.App.Entity.AddressEntity;
 import toeic.App.Entity.CandidateEntity;
 import toeic.App.Entity.QuestionPartOneEntity;
 import toeic.App.Entity.StateEntity;
-import toeic.App.transform.PartOneTF;
+import toeic.App.Transform.PartOneTF;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Created by ngocson on 25/11/2017.

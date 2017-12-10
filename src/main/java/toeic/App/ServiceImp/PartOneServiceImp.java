@@ -9,7 +9,7 @@ import toeic.App.DTO.PartOneDto;
 import toeic.App.Entity.QuestionPartOneEntity;
 import toeic.App.Repository.QuestionPartOneDao;
 import toeic.App.Service.QuestionPartOneService;
-import toeic.App.transform.PartOneTF;
+import toeic.App.Transform.PartOneTF;
 
 import java.util.Date;
 import java.util.List;

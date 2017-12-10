@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public interface Convert<E extends IdModel, D> {
 
-    E convertToEntity(D d);
+    E convertToEntity(D d) throws IOException;
 
     D convertToData(E e) throws IOException;
 

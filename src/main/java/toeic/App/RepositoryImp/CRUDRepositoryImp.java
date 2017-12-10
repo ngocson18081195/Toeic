@@ -49,7 +49,9 @@ public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDReposi
      */
     @Override
     public E save(E e) {
+        System.out.println(e.toString());
         entityManager.persist(e);
+        System.out.println(e.toString());
         return e;
     }
 

@@ -13,6 +13,7 @@ import toeic.App.Entity.QuestionPartOneEntity;
 import toeic.App.Service.QuestionPartOneService;
 import toeic.App.WebService.PartOneWS;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class PartOneWSImp implements PartOneWS{
 
 
     @Override
-    public ResponseEntity create() {
+    public ResponseEntity create() throws IOException {
         logger.info("Start up Create Part One RestController");
         PartOneDto partOneDto = new PartOneDto();
         partOneDto.setPathImage("S");
@@ -37,13 +38,13 @@ public class PartOneWSImp implements PartOneWS{
     }
 
     @Override
-    public ResponseEntity findAll() {
+    public ResponseEntity findAll() throws IOException {
         List<PartOneDto> list = questionPartOneService.list();
         return ResponseEntity.ok(list);
     }
 
     @Override
-    public ResponseEntity findOne(@PathVariable(name = "id") Long id) {
+    public ResponseEntity findOne(@PathVariable(name = "id") Long id) throws IOException {
         logger.info("Start Find One",id);
         PartOneDto partOneDto = null;
         if (id !=null) {
@@ -53,7 +54,7 @@ public class PartOneWSImp implements PartOneWS{
     }
 
     @Override
-    public ResponseEntity delete(@PathVariable(name = "id") Long id) {
+    public ResponseEntity delete(@PathVariable(name = "id") Long id) throws IOException {
         logger.info("Start delete",id);
         PartOneDto partOneDto = questionPartOneService.findOne(id);
         if (partOneDto !=null){
