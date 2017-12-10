@@ -10,7 +10,6 @@ import toeic.App.Entity.QuestionPartTwoEntity;
 import toeic.App.Utils.ServiceFiles;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * Created by chien on 29/11/2017.
@@ -39,12 +38,12 @@ public class QuestionPartTwoConvert extends ConvertImpl<QuestionPartTwoEntity, Q
         return questionPartTwoEntity;
     }
 
-    @Override
-    public <K extends Serializable> QuestionPartTwoEntity convertToEntity(QuestionPartTwoDto questionPartTwoDto, K k) {
-        QuestionPartTwoEntity questionPartTwoEntity = this.convertToEntity(questionPartTwoDto);
-        questionPartTwoEntity.setId((Long) k);
-        return questionPartTwoEntity;
-    }
+//    @Override
+//    public <K extends Serializable> QuestionPartTwoEntity convertToEntity(QuestionPartTwoDto questionPartTwoDto, K k) {
+//        QuestionPartTwoEntity questionPartTwoEntity = this.convertToEntity(questionPartTwoDto);
+//        questionPartTwoEntity.setId((Long) k);
+//        return questionPartTwoEntity;
+//    }
 
     @Override
     public QuestionPartTwoDto convertToData(QuestionPartTwoEntity questionPartTwoEntity) throws IOException {
