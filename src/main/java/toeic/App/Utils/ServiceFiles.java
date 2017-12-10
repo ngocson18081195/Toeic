@@ -24,7 +24,7 @@ public class ServiceFiles {
         String osName = System.getProperty("os.name");
         if (osName.toUpperCase().equals(OS.LINUX.toString())) {
             this.separate = '/';
-        } else if (osName.toLowerCase().equals(OS.WINDOW.toString())) {
+        } else if (osName.toLowerCase().contains(OS.WINDOWS.toString())) {
             this.separate = '\\';
         } else {
             throw new Exception("Os Now Allow");

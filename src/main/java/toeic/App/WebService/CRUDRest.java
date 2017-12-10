@@ -1,9 +1,11 @@
 package toeic.App.WebService;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,8 +22,8 @@ public interface CRUDRest<D, ID extends Serializable> {
     @PostMapping()
     ResponseEntity<D> create(D d);
 
-    @PatchMapping(value = "/{id}")
-    ResponseEntity<D> update(@PathVariable(name = "id") ID id);
+    @PutMapping(value = "/{id}")
+    ResponseEntity<D> update(D d, @PathVariable(name = "id") ID id);
 
     @DeleteMapping(value = "/{id}")
     HttpStatus remove(@PathVariable(name = "id") ID id);

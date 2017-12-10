@@ -8,12 +8,17 @@ import java.util.List;
  */
 public interface CRUDService<D, ID extends Serializable> {
 
+    List<D> list();
+
     D findOne(ID id);
 
     D save(D d);
 
     void delete(D d);
 
-    List<D> list();
+    D update(D d, ID id);
 
+    List<D> findAll();
+
+    void delete(ID id);
 }

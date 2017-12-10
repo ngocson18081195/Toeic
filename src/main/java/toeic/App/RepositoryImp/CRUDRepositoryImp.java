@@ -12,10 +12,9 @@ import java.util.List;
 /**
  * Created by ngocson on 24/11/2017.
  */
-public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDRepository<E,ID> {
+public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDRepository<E, ID> {
     /**
-     *  create Entity manager
-     *
+     * create Entity manager
      */
     @PersistenceContext
     protected EntityManager entityManager;
@@ -38,12 +37,13 @@ public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDReposi
      */
     @Override
     public E findOne(ID id) {
-        E e = entityManager.find(entityClass,id);
+        E e = entityManager.find(entityClass, id);
         return e;
     }
 
     /**
      * Method Save Entity into Database
+     *
      * @param e
      * @return EntityManager
      */
@@ -61,29 +61,36 @@ public class CRUDRepositoryImp<E, ID extends Serializable> implements CRUDReposi
      */
     @Override
     public void delete(E e) {
-        System.out.println("@@@@@@"+e);
         entityManager.remove(e);
     }
 
     /**
-     *  Method list entity
+     * Method list entity
      *
      * @return List Entity
      */
     @Override
     public List<E> findAll() {
-        List<E> list = entityManager.createQuery("from "+ entityClass.getName()).getResultList();
+        List<E> list = entityManager.createQuery("from " + entityClass.getName()).getResultList();
         return list;
     }
 
     /**
      * Method Update entity
+     *
      * @param e
      * @return Entity
      */
+    @Transactional
     @Override
     public E update(E e) {
-
         return entityManager.merge(e);
+    }
+
+    @Transactional
+    @Override
+    public void delete(ID id) {
+        E e = this.findOne(id);
+        this.delete(e);
     }
 }

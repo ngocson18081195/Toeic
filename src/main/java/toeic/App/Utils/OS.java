@@ -5,5 +5,5 @@ package toeic.App.Utils;
  */
 public enum OS {
     LINUX,
-    WINDOW
+    WINDOWS
 }

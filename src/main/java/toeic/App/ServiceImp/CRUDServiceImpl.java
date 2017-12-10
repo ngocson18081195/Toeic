@@ -7,6 +7,7 @@ import toeic.App.Service.CRUDService;
 import toeic.App.Transform.Convert;
 import toeic.Common.Model.IdModel;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,26 +27,46 @@ public abstract class CRUDServiceImpl<D, ID extends Serializable, E extends IdMo
 
     @Override
     public D findOne(ID id) {
-        return null;
+        E e = repository.findOne(id);
+        D d = null;
+        try {
+            d = convert.convertToData(e);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return d;
     }
 
     @Override
     public D save(D d) {
-        LOGGER.info("Save");
         E e = convert.convertToEntity(d);
-        LOGGER.info("Convert Success, Go To Database");
         repository.save(e);
         return d;
     }
 
     @Override
     public void delete(D d) {
-
+        E e = convert.convertToEntity(d);
+        repository.delete(e);
     }
 
     @Override
-    public List<D> list() {
-        return null;
+    public D update(D d, ID id) {
+        E e = convert.convertToEntity(d, id);
+        repository.update(e);
+        return d;
+    }
+
+    @Override
+    public List<D> findAll() {
+        List<E> eList = repository.findAll();
+        List<D> dList = convert.convertToDatas(eList);
+        return dList;
+    }
+
+    @Override
+    public void delete(ID id) {
+        repository.delete(id);
     }
 
 }

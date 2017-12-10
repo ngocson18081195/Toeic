@@ -9,6 +9,8 @@ import toeic.App.Repository.QuestionPartTwoDao;
 import toeic.App.Service.QuestionPartTwoService;
 import toeic.App.Transform.Convert;
 
+import java.util.List;
+
 /**
  * Created by chien on 29/11/2017.
  */
@@ -21,5 +23,10 @@ public class QuestionPartTwoServiceImpl
     public QuestionPartTwoServiceImpl(@Qualifier(value = "convertPartTwo") Convert<QuestionPartTwoEntity, QuestionPartTwoDto> convert,
                                       QuestionPartTwoDao questionPartTwoDao) {
         super(convert, questionPartTwoDao);
+    }
+
+    @Override
+    public List<QuestionPartTwoDto> list() {
+        return null;
     }
 }

@@ -24,28 +24,32 @@ public abstract class CRUDRestImpl<D, ID extends Serializable> implements CRUDRe
 
     @Override
     public ResponseEntity<List<D>> findAll() {
-        return null;
+        List<D> list = crudService.findAll();
+        return ResponseEntity.ok(list);
     }
 
     @Override
     public ResponseEntity<D> findOne(@PathVariable(name = "id") ID id) {
-        return null;
+        D d = crudService.findOne(id);
+        return ResponseEntity.ok(d);
     }
 
     @Override
     public ResponseEntity<D> create(D d) {
         crudService.save(d);
-        return null;
+        return ResponseEntity.ok(d);
     }
 
     @Override
-    public ResponseEntity<D> update(@PathVariable(name = "id") ID id) {
-        return null;
+    public ResponseEntity<D> update(D d, @PathVariable(name = "id") ID id) {
+        crudService.update(d, id);
+        return ResponseEntity.ok(d);
     }
 
     @Override
     public HttpStatus remove(@PathVariable(name = "id") ID id) {
-        return null;
+        crudService.delete(id);
+        return HttpStatus.OK;
     }
 
 }
