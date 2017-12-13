@@ -2,17 +2,15 @@ package toeic.App.ServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import toeic.App.DTO.AccountDTO;
 import toeic.App.DTO.RoleDTO;
-import toeic.App.Entity.AccountEntity;
 import toeic.App.Entity.RoleEntity;
 import toeic.App.Repository.RoleRepository;
 import toeic.App.Service.RoleSevice;
-import toeic.App.Transform.AccountTF;
 import toeic.App.Transform.RoleTF;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +24,7 @@ public class RoleSeviceImp implements RoleSevice {
     RoleRepository roleRepository;
     @Autowired
     RoleTF roleTF;
-
+    ConvertListIpm<RoleEntity,RoleDTO> convertList;
 
     @Override
     public RoleDTO findOne(Long aLong) throws IOException {
@@ -51,15 +49,7 @@ public class RoleSeviceImp implements RoleSevice {
     }
 
     @Override
-    public List<RoleDTO> list() throws IOException {
-        List<RoleEntity> roleEntityList = roleRepository.findAll();
-        List<RoleDTO> roleDTOList = roleTF.convertListEtntiytoDTO(roleEntityList);
-        return roleDTOList;
-    }
-
-
-    @Override
-    public void update(RoleDTO roleDTO, Long id) throws IOException {
+    public RoleDTO update(RoleDTO roleDTO, Long id) throws IOException {
 
 
         RoleDTO roleDTOUpdate = new RoleDTO();
@@ -68,5 +58,33 @@ public class RoleSeviceImp implements RoleSevice {
         RoleEntity roleEntity = roleTF.convertToEntity(roleDTOUpdate);
         roleRepository.update(roleEntity);
 
+
+        return roleDTOUpdate;
     }
+
+    @Override
+    public List<RoleDTO> findAll() throws IOException {
+        List<RoleEntity> roleEntityList = roleRepository.findAll();
+        List<RoleDTO> roleDTOList = convertList.convertToDatas(roleEntityList);
+        return roleDTOList;
+    }
+
+    @Override
+    public void delete(Long aLong) {
+        roleRepository.delete(aLong);
+    }
+
+
+    /**
+     * Version 1
+     */
+    @Override
+    public List<RoleEntity> convertToRoleEntityList(List<RoleDTO> roleDtoList) throws IOException {
+        List<RoleEntity> roleEntityList = new ArrayList<>(0);
+        for (RoleDTO roleDTO : roleDtoList) {
+            roleEntityList.add(this.roleTF.convertToEntity(roleDTO));
+        }
+        return roleEntityList;
+    }
+
 }

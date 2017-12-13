@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,17 +15,17 @@ import java.util.List;
  */
 public interface CRUDRest<D, ID extends Serializable> {
     @GetMapping()
-    ResponseEntity<List<D>> findAll();
+    ResponseEntity<List<D>> findAll() throws IOException;
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<D> findOne(@PathVariable(name = "id") ID id);
+    ResponseEntity<D> findOne(@PathVariable(name = "id") ID id) throws IOException;
 
     @PostMapping()
-    ResponseEntity<D> create(D d);
+    ResponseEntity<D> create(D d) throws IOException;
 
     @PutMapping(value = "/{id}")
-    ResponseEntity<D> update(D d, @PathVariable(name = "id") ID id);
+    ResponseEntity<D> update(D d, @PathVariable(name = "id") ID id) throws IOException;
 
     @DeleteMapping(value = "/{id}")
-    HttpStatus remove(@PathVariable(name = "id") ID id);
+    HttpStatus remove(@PathVariable(name = "id") ID id) throws IOException;
 }

@@ -1,5 +1,6 @@
 package toeic.App.Transform;
 
+import toeic.App.Service.ConvertList;
 import toeic.Common.Model.IdModel;
 
 import java.io.IOException;
@@ -13,12 +14,12 @@ public interface Convert<E extends IdModel, D> {
 
     E convertToEntity(D d) throws IOException;
 
-    <K extends Serializable> E convertToEntity(D d, K k);
+   // <K extends Serializable> E convertToEntity(D d, K k) throws IOException;
 
     D convertToData(E e) throws IOException;
 
-    List<E> convertToEntities(List<D> dList);
-
-    List<D> convertToDatas(List<E> eList);
+//    List<E> convertToEntities(List<D> dList);
+//
+//    List<D> convertToDatas(List<E> eList);
 
 }

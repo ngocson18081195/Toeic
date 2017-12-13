@@ -35,7 +35,7 @@ public class AccountWSImp implements AccountWS {
 
     @Override
     public ResponseEntity<List<AccountDTO>> findAll() throws IOException {
-        List<AccountDTO> accountDTOList = accountSevice.list();
+        List<AccountDTO> accountDTOList = accountSevice.findAll();
         return ResponseEntity.ok(accountDTOList);
     }
 
@@ -47,7 +47,7 @@ public class AccountWSImp implements AccountWS {
 
     @Override
     public ResponseEntity<AccountDTO> create(AccountDTO accountDTO) throws IOException {
-        for(RoleDTO roleDTO:roleSevice.list()){
+        for(RoleDTO roleDTO:roleSevice.findAll()){
             if(roleDTO.getName().equalsIgnoreCase("q") || roleDTO.getName().equalsIgnoreCase("a")){
              //   accountDTO.getRoleDTOArrayList().add(roleDTO);
                 accountDTO.getRoleDTOArrayList().add(roleDTO);

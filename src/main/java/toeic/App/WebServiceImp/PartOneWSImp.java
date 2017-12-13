@@ -39,7 +39,7 @@ public class PartOneWSImp implements PartOneWS{
 
     @Override
     public ResponseEntity findAll() throws IOException {
-        List<PartOneDto> list = questionPartOneService.list();
+        List<PartOneDto> list = questionPartOneService.findAll();
         return ResponseEntity.ok(list);
     }
 

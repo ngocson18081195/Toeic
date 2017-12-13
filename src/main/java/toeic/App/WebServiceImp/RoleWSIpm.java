@@ -24,7 +24,7 @@ public class RoleWSIpm implements RoleWS {
 
     @Override
     public ResponseEntity<List<RoleDTO>> findAll() throws IOException {
-        List<RoleDTO> roleDTOList = roleSevice.list();
+        List<RoleDTO> roleDTOList = roleSevice.findAll();
         return ResponseEntity.ok(roleDTOList);
     }
 

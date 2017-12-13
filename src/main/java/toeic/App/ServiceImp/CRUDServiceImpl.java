@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import toeic.App.Repository.CRUDRepository;
 import toeic.App.Service.CRUDService;
+import toeic.App.Service.ConvertList;
 import toeic.App.Transform.Convert;
 import toeic.Common.Model.IdModel;
 
@@ -18,6 +19,7 @@ public abstract class CRUDServiceImpl<D, ID extends Serializable, E extends IdMo
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CRUDServiceImpl.class);
     protected Convert<E, D> convert;
+    protected ConvertList<E,D> convertToDatas;
     protected CRUDRepository<E, ID> repository;
 
     public CRUDServiceImpl(Convert<E, D> convert, CRUDRepository<E, ID> repository) {
@@ -38,30 +40,30 @@ public abstract class CRUDServiceImpl<D, ID extends Serializable, E extends IdMo
     }
 
     @Override
-    public D save(D d) {
+    public D save(D d) throws IOException {
         E e = convert.convertToEntity(d);
         repository.save(e);
         return d;
     }
 
     @Override
-    public void delete(D d) {
+    public void delete(D d) throws IOException {
         E e = convert.convertToEntity(d);
         repository.delete(e);
     }
 
     @Override
-    public D update(D d, ID id) {
-        E e = convert.convertToEntity(d, id);
+    public D update(D d, ID id) throws IOException {
+        E e = convert.convertToEntity(d);
         repository.update(e);
         return d;
     }
 
     @Override
-    public List<D> findAll() {
+    public List<D> findAll() throws IOException {
         List<E> eList = repository.findAll();
-        List<D> dList = convert.convertToDatas(eList);
-        return dList;
+        List<D> dList = convertToDatas.convertToDatas(eList);
+        return null;
     }
 
     @Override

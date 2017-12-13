@@ -3,13 +3,11 @@ package toeic.App.ServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import toeic.App.DTO.AccountDTO;
-import toeic.App.DTO.RoleDTO;
 import toeic.App.Entity.AccountEntity;
-import toeic.App.Entity.RoleEntity;
 import toeic.App.Repository.AccountRepository;
 import toeic.App.Service.AccountSevice;
+import toeic.App.Service.ConvertList;
 import toeic.App.Transform.AccountTF;
-import toeic.App.Transform.RoleTF;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -27,6 +25,7 @@ public class AccountSeviceImp implements AccountSevice  {
     private AccountRepository accountRepository;
     @Autowired
     private AccountTF accountTF;
+    ConvertList<AccountEntity,AccountDTO> convertList;
 
 
     @Override
@@ -51,16 +50,8 @@ public class AccountSeviceImp implements AccountSevice  {
         accountRepository.delete(accountEntity);
 
     }
-
     @Override
-    public List<AccountDTO> list() throws IOException {
-        List<AccountEntity> accountEntities = accountRepository.findAll();
-        List<AccountDTO> accountDTOS = accountTF.convertListEtntiytoDTO(accountEntities);
-        return accountDTOS;
-    }
-
-    @Override
-    public void update(AccountDTO accountDTO,Long id) throws IOException {
+    public AccountDTO update(AccountDTO accountDTO, Long id) throws IOException {
 
 
         AccountDTO accountDTOupdate = this.findOne(id);
@@ -73,5 +64,18 @@ public class AccountSeviceImp implements AccountSevice  {
         AccountEntity accountEntity = accountTF.convertToEntity(accountDTOupdate);
 
         accountRepository.update(accountEntity);
+        return accountDTOupdate;
+    }
+
+    @Override
+    public List<AccountDTO> findAll() throws IOException {
+        List<AccountEntity> accountEntities = accountRepository.findAll();
+        List<AccountDTO> accountDTOS = convertList.convertToDatas(accountEntities);
+        return accountDTOS;
+    }
+    @Override
+    public void delete(Long aLong) {
+        accountRepository.delete(aLong);
+
     }
 }

@@ -14,7 +14,5 @@ import java.util.List;
 public interface AccountTF extends Convert<AccountEntity,AccountDTO> {
 
 
-    List<AccountDTO> convertListEtntiytoDTO(List<AccountEntity> accountEntityList ) throws IOException;
-    List<AccountEntity> convertListDTOtoEntity(List<AccountDTO> accountDTOList) throws IOException;
 
 }

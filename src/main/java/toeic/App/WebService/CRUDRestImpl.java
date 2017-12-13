@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import toeic.App.Service.CRUDService;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,25 +24,25 @@ public abstract class CRUDRestImpl<D, ID extends Serializable> implements CRUDRe
     }
 
     @Override
-    public ResponseEntity<List<D>> findAll() {
+    public ResponseEntity<List<D>> findAll() throws IOException {
         List<D> list = crudService.findAll();
         return ResponseEntity.ok(list);
     }
 
     @Override
-    public ResponseEntity<D> findOne(@PathVariable(name = "id") ID id) {
+    public ResponseEntity<D> findOne(@PathVariable(name = "id") ID id) throws IOException {
         D d = crudService.findOne(id);
         return ResponseEntity.ok(d);
     }
 
     @Override
-    public ResponseEntity<D> create(D d) {
+    public ResponseEntity<D> create(D d) throws IOException {
         crudService.save(d);
         return ResponseEntity.ok(d);
     }
 
     @Override
-    public ResponseEntity<D> update(D d, @PathVariable(name = "id") ID id) {
+    public ResponseEntity<D> update(D d, @PathVariable(name = "id") ID id) throws IOException {
         crudService.update(d, id);
         return ResponseEntity.ok(d);
     }
