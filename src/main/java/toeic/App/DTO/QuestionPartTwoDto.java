@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode
 @ToString
-public class QuestionPartTwoDto implements Serializable {
+public class QuestionPartTwoDto extends Dto {
 
     private MultipartFile fileMp3;
     private Character answer;

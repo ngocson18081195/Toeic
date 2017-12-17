@@ -17,10 +17,15 @@ import toeic.App.WebService.CandidateWS;
  */
 @RestController
 public class CandidateWSImp implements CandidateWS {
-    @Autowired
+
     private CandidateService candidateService;
-    @Autowired
     private StateService stateService;
+
+    @Autowired
+    public CandidateWSImp(CandidateService candidateService, StateService stateService) {
+        this.candidateService = candidateService;
+        this.stateService = stateService;
+    }
 
     @Override
     public ResponseEntity save() {

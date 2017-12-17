@@ -18,8 +18,8 @@ public interface Convert<E extends IdModel, D> {
 
     D convertToData(E e) throws IOException;
 
-//    List<E> convertToEntities(List<D> dList);
+    List<E> convertToEntities(List<D> dList) throws IOException;
 //
-//    List<D> convertToDatas(List<E> eList);
+   List<D> convertToDatas(List<E> eList) throws IOException;
 
 }

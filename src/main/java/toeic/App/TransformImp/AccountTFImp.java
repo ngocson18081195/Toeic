@@ -14,6 +14,7 @@ import toeic.App.Transform.RoleTF;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by lai on 06/12/2017.
@@ -21,20 +22,17 @@ import java.util.List;
 @Service
 public class AccountTFImp implements AccountTF {
     @Autowired
-    RoleTF roleTF;
-   // @Autowired
-  //  ConvertList<AccountEntity,AccountDTO> accountEntityAccountDTOConvertListAccunt;
-    ConvertList<RoleEntity,RoleDTO> roleEntityRoleDTOConvertListRole;
+    AccountTF accountTF;
 
     @Override
     public AccountEntity convertToEntity(AccountDTO accountDTO) throws IOException {
         AccountEntity accountEntity = new AccountEntity();
-
         accountEntity.setEnable(accountDTO.getEnable());
         accountEntity.setEmail(accountDTO.getEmail());
         accountEntity.setPwd(accountDTO.getPwd());
-        //  accountEntity.setRoleEntityList(roleTF.convertListDTOtoEntity(accountDTO.getRoleDTOArrayList()));
-        accountEntity.setRoleEntityList(roleEntityRoleDTOConvertListRole.convertToEntities(accountDTO.getRoleDTOArrayList()));
+        accountEntity.setId(accountDTO.getId());
+//        accountEntity.setRoleEntityList(accountDTO.getRoleList().stream().map(s -> s));
+//        accountEntity.setRoleEntityList(accountDTO.);
         return accountEntity;
     }
 
@@ -44,36 +42,28 @@ public class AccountTFImp implements AccountTF {
         accountDTO.setPwd(accountEntity.getPwd());
         accountDTO.setEmail(accountEntity.getEmail());
         accountDTO.setEnable(accountEntity.getEnable());
-        //accountDTO.setRoleDTOArrayList(roleTF.convertListEtntiytoDTO(accountEntity.getRoleEntityList()));
-        accountDTO.setRoleDTOArrayList(roleEntityRoleDTOConvertListRole.convertToDatas(accountEntity.getRoleEntityList()));
+        accountDTO.setId(accountEntity.getId());
+        accountDTO.setRoleList(accountEntity.getRoleEntityList().stream().map(roleEntity -> roleEntity.getName()).collect(Collectors.toList()));
         return accountDTO;
     }
 
+    @Override
+    public List<AccountEntity> convertToEntities(List<AccountDTO> accountDTOS) throws IOException {
+        List<AccountEntity> accountEntities = new ArrayList<>();
+        for (AccountDTO accountDTO:accountDTOS){
+            accountEntities.add(accountTF.convertToEntity(accountDTO));
+        }
+        return accountEntities;
+    }
 
-
-//    @Override
-//    public List<AccountDTO> convertListEtntiytoDTO(List<AccountEntity> accountEntityList) throws IOException {
-//        List<AccountDTO> accountDTOList = new ArrayList<>();
-//        for(AccountEntity accountEntity :accountEntityList ){
-//
-//            AccountDTO  accountDTO = this.convertToData(accountEntity);
-//            accountDTOList.add(accountDTO);
-//
-//        }
-//        return accountDTOList;
-//    }
-//
-//    @Override
-//    public List<AccountEntity> convertListDTOtoEntity(List<AccountDTO> accountDTOList) throws IOException {
-//        List<AccountEntity> accountEntityList = new ArrayList<>();
-//        for(AccountDTO accountDTO :accountDTOList){
-//
-//            AccountEntity accountEntity = this.convertToEntity(accountDTO);
-//            accountEntityList.add(accountEntity);
-//
-//        }
-//        return accountEntityList;
-//    }
+    @Override
+    public List<AccountDTO> convertToDatas(List<AccountEntity> accountEntityList) throws IOException {
+        List<AccountDTO> accountDTOList = new ArrayList<>();
+        for (AccountEntity accountEntity:accountEntityList){
+            accountDTOList.add(accountTF.convertToData(accountEntity));
+        }
+        return null;
+    }
 
 
 }

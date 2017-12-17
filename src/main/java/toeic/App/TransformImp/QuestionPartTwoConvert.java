@@ -10,6 +10,7 @@ import toeic.App.Entity.QuestionPartTwoEntity;
 import toeic.App.Utils.ServiceFiles;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by chien on 29/11/2017.
@@ -55,6 +56,16 @@ public class QuestionPartTwoConvert extends ConvertImpl<QuestionPartTwoEntity, Q
         questionPartTwoDto.setAnswer(questionPartTwoEntity.getResult());
         questionPartTwoDto.setBytes(this.serviceFiles.getByteFromPath(questionPartTwoEntity.getPathMp3()));
         return questionPartTwoDto;
+    }
+
+    @Override
+    public List<QuestionPartTwoEntity> convertToEntities(List<QuestionPartTwoDto> questionPartTwoDtos) throws IOException {
+        return null;
+    }
+
+    @Override
+    public List<QuestionPartTwoDto> convertToDatas(List<QuestionPartTwoEntity> questionPartTwoEntities) throws IOException {
+        return null;
     }
 
 }

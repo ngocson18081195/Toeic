@@ -23,4 +23,5 @@ public interface CRUDService<D, ID extends Serializable> {
 
     void delete(ID id);
 
+
 }

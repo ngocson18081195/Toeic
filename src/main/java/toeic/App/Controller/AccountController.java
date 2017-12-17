@@ -17,8 +17,8 @@ import java.io.IOException;
  */
 @Controller
 public class AccountController {
-    @Autowired
-    RoleSevice roleSevice;
+//    @Autowired
+//    RoleSevice roleSevice;
     @RequestMapping("/createAcount")
     private String createAcount(Model model) throws IOException {
         model.addAttribute("Account",new AccountDTO());

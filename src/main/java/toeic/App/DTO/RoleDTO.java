@@ -11,6 +11,9 @@ import java.util.List;
  * Created by lai on 06/12/2017.
  */
 @Data
-public class RoleDTO extends NameModel{
-    List<AccountDTO> accountDTOList = new ArrayList<>(0);
+public class RoleDTO extends Dto{
+    private Long id;
+    private String name;
+    private List<String> accountList = new ArrayList<>(0);
+//    List<AccountDTO> accountDTOList = new ArrayList<>(0);
 }

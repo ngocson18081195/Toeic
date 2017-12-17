@@ -9,4 +9,5 @@ import toeic.App.Entity.RoleEntity;
  */
 @Repository
 public interface RoleRepository extends CRUDRepository<RoleEntity,Long>{
+    RoleEntity findByName(String nameRole);
 }

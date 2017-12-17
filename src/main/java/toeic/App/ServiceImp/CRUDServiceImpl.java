@@ -19,8 +19,9 @@ public abstract class CRUDServiceImpl<D, ID extends Serializable, E extends IdMo
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CRUDServiceImpl.class);
     protected Convert<E, D> convert;
-    protected ConvertList<E,D> convertToDatas;
+    protected ConvertList convertList;
     protected CRUDRepository<E, ID> repository;
+
 
     public CRUDServiceImpl(Convert<E, D> convert, CRUDRepository<E, ID> repository) {
         this.convert = convert;
@@ -61,9 +62,8 @@ public abstract class CRUDServiceImpl<D, ID extends Serializable, E extends IdMo
 
     @Override
     public List<D> findAll() throws IOException {
-        List<E> eList = repository.findAll();
-        List<D> dList = convertToDatas.convertToDatas(eList);
-        return null;
+        List<E> dList =  repository.findAll();
+        return convert.convertToDatas(dList);
     }
 
     @Override

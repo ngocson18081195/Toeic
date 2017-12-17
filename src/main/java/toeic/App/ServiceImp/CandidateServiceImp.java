@@ -35,6 +35,15 @@ public class CandidateServiceImp implements CandidateService {
     @Override
     public List<CandidateDTO> findAllCandidateDTO() {
         List<CandidateEntity> list = candidateDao.getAll();
+        CandidateDTO candidateDTO = null;
+        try {
+
+        }catch (Exception e){
+
+        }
+        for (CandidateEntity entity : list){
+
+        }
         List<CandidateDTO> candidateDTOList = partOneTF.convertList(list);
         return candidateDTOList;
     }

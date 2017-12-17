@@ -21,7 +21,7 @@ public class ServiceFiles {
     public void init() throws Exception {
         this.homeUser = System.getProperty("user.home");
         String osName = System.getProperty("os.name");
-        if (osName.toUpperCase().equals(OS.LINUX)) {
+        if (osName.toUpperCase().equals(OS.LINUX.toString())) {
             this.separate = '/';
         } else if (osName.toUpperCase().contains(OS.WINDOWS.toString())) {
             this.separate = '\\';
